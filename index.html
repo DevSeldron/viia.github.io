@@ -1,80 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome Page</title>
+    <title>Welcome to My Website</title>
     <style>
       body {
         background-color: #f2f2f2;
-        font-family: Arial, sans-serif;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      
+      header {
+        background-color: #333;
+        color: #f2f2f2;
+        padding: 24px;
+        text-align: center;
       }
       
       h1 {
-        text-align: center;
-        font-size: 36px;
-        font-weight: bold;
+        font-size: 48px;
+        margin-top: 0;
       }
       
       .btn {
         display: block;
-        margin: 0 auto;
+        margin: 24px auto;
         padding: 12px 24px;
-        font-size: 18px;
+        font-size: 24px;
         font-weight: bold;
         text-align: center;
         text-transform: uppercase;
-        color: #fff;
-        background-color: #4CAF50;
+        color: #f2f2f2;
+        background-color: #333;
         border: none;
-        border-radius: 4px;
+        border-radius: 50px;
         cursor: pointer;
+        transition: transform 0.2s, background-color 0.2s;
       }
       
       .btn:hover {
-        background-color: #3e8e41;
-      }
-
-      .btn2 {
-        display: block;
-        margin: 0 auto;
-        padding: 12px 24px;
-        font-size: 18px;
-        font-weight: bold;
-        text-align: center;
-        text-transform: uppercase;
-        color: #fff;
-        background-color: #4CAF50;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
+        background-color: #666;
       }
       
-      .btn2:hover {
-        background-color: #3e8e41;
-      }
-      .btn3 {
-        display: block;
-        margin: 0 auto;
-        padding: 12px 24px;
-        font-size: 18px;
-        font-weight: bold;
-        text-align: center;
-        text-transform: uppercase;
-        color: #fff;
-        background-color: #4CAF50;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      
-      .btn3:hover {
-        background-color: #3e8e41;
+      .btn:active {
+        transform: scale(0.9);
       }
     </style>
   </head>
   <body>
-    <h1>Welcome! This website is currently only a test, and could turn into a website related to my stuff.</h1>
+    <header>
+      <h1>Welcome to My Website</h1>
+    </header>
+    
     <button class="btn" onclick="window.location.href='test.html'">Next Page</button>
-    <button class="btn2" onclick="window.location.href='404.html'">404 Page</button>
-    <button class="btn3" onclick="window.location.href='catchme.html'">Catch the Button</button>
+    <button class="btn" onclick="window.location.href='404.html'">404 Page</button>
+    <button class="btn" onclick="window.location.href='catchme.html'">Catch Me!</button>
   </body>
 </html>
