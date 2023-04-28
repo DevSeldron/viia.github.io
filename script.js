@@ -1,6 +1,6 @@
-const button = document.getElementById("btn");
+const button = document.getElementById("noisebtn");
 const audio = document.getElementById("click");
 
-btn.addEventListener("click", function() {
+noisebtn.addEventListener("click", function() {
   audio.play();
 });
