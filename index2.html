@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to My Website</title>
+     <link rel="shortcut icon" type="image/x-icon" href="FAVICON.ico">
+    <style>
+      body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      
+      header {
+        background-color: #333;
+        color: #f2f2f2;
+        padding: 24px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 36px;
+        animation: slide-down 1s ease;
+      }
+      
+      h1 {
+        margin-top: 0;
+      }
+      
+      .btn {
+        display: block;
+        margin: 24px auto;
+        padding: 12px 24px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        color: #f2f2f2;
+        background-color: #333;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.2s;
+      }
+      
+      .btn:hover {
+        background-color: #666;
+      }
+      
+      .btn:active {
+        transform: scale(0.9);
+      }
+      
+      @keyframes slide-down {
+        from {
+          transform: translateY(-100%);
+        }
+        to {
+          transform: translateY(0%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to my website!</h1>
+      <p>This website is subject to change in a while, as this is currently just a test.</p>
+    </header>
+    <button class="btn" onclick="window.location.href='if-you-read-this-i-love-you.html'">404 Page</button>
+    <button class="btn" onclick="window.location.href='catchme.html'">Catch Me!</button>
+    <button class="btn" onclick="window.location.href='progress.html'">Progress Bar Test</button>
+    <button class="btn" onclick="window.location.href='welcome.html'">Welcome Page (Unfinished)</button>
+    <button class="btn" onclick="window.location.href='cutedog.html'">Cute Dogs every refresh</button>
+  </body>
+</html>
