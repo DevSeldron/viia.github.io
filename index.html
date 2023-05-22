@@ -98,8 +98,10 @@
       </ul>
     </div>
     <script>
-      const container = document.querySelector(".container");
-      container.classList.add("active");
-    </script>
+  const container = document.querySelector(".container");
+  window.addEventListener("load", function() {
+    container.classList.add("active");
+  });
+</script>
   </body>
 </html>
