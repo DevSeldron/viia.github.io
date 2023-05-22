@@ -34,12 +34,50 @@
       .fade-in.active {
         opacity: 1;
       }
+      .social-links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        width: 50%;
+      }
+      .social-links li {
+        margin-right: 20px;
+      }
+      .social-links a {
+        font-size: 24px;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        transition: all 0.3s ease-in-out;
+      }
+      .social-links a:hover {
+        color: darkgray;
+      }
+      .twitter-link {
+        color: #1DA1F2;
+      }
+      .discord-link {
+        color: #7289DA;
+      }
+      .telegram-link {
+        color: #0088cc;
+      }
+      .steam-link {
+        color: #171A21;
+      }
     </style>
   </head>
   <body>
     <div class="container fade-in">
       <h1>Welcome to Viiah's website!</h1>
       <p>Here you can find my socials, and more!</p>
+      <ul class="social-links">
+        <li><a href="https://twitter.com/viiahct" target="_blank" class="twitter-link">Twitter</a></li>
+        <li><a href="https://discord.com/users/331457672756985866 " target="_blank" class="discord-link">Discord</a></li>
+        <li><a href="https://t.me/CosmoHCT" target="_blank" class="telegram-link">Telegram</a></li>
+        <li><a href="https://steamcommunity.com/id/viiah/" target="_blank" class="steam-link">Steam</a></li>
+      </ul>
     </div>
     <script>
       const container = document.querySelector(".container");
