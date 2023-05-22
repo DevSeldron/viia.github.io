@@ -1,107 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Viiah's Website</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: white;
-      }
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 30px;
-        background-color: #4C4E52;
-        color: white;
-        text-align: center;
-      }
-      h1 {
-        font-size: 48px;
-        font-weight: bold;
-        margin-top: 0;
-        margin-bottom: 20px;
-      }
-      p {
-        font-size: 24px;
-        font-weight: bold;
-        margin-top: 0;
-        margin-bottom: 20px;
-      }
-      .fade-in {
-        opacity: 0;
-        transition: opacity 1s ease-in;
-      }
-      .fade-in.active {
-        opacity: 1;
-      }
-      .social-links {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        margin: 0 auto;
-        width: 50%;
-      }
-      .social-links li {
-        margin-right: 20px;
-      }
-      .social-links a {
-        font-size: 24px;
-        font-weight: bold;
-        text-decoration: none;
-        color: white;
-        transition: all 0.3s ease-in-out;
-      }
-      .social-links a:hover {
-        color: darkgray;
-      }
-      .twitter-link {
-        color: #1DA1F2;
-      }
-      .discord-link {
-        color: #7289DA;
-      }
-      .telegram-link {
-        color: #0088cc;
-      }
-      .steam-link {
-        color: #171A21;
-      }
-      .dark-gray {
-  background-color: #444;
-  color: #fff;
-}
-.rounded {
-  border-radius: 5px;
-}
-      .button {
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 50px;
-  background-color: #4d4d4d;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-    </style>
-  </head>
-  <body>
-    <div class="container fade-in">
-      <h1>Welcome to Viiah's website!</h1>
-      <p>Here you can find my socials, and more!</p>
-<a href="index2.html" class="button">Go to old welcome page</a>
-      <ul class="social-links">
-        <li><a href="https://twitter.com/viiahct" target="_blank" class="twitter-link">Twitter</a></li>
-        <li><a href="https://discord.com/users/331457672756985866 " target="_blank" class="discord-link">Discord</a></li>
-        <li><a href="https://t.me/CosmoHCT" target="_blank" class="telegram-link">Telegram</a></li>
-        <li><a href="https://steamcommunity.com/id/viiah/" target="_blank" class="steam-link">Steam</a></li>
-      </ul>
-    </div>
-    <script>
-  const container = document.querySelector(".container");
-  window.addEventListener("load", function() {
-    container.classList.add("active");
-  });
-</script>
-  </body>
+<head>
+	<title>Viiah's Website</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+			background-color: #1f1f1f;
+			font-family: Arial, sans-serif;
+			color: #fff;
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			width: 80%;
+			margin: 0 auto;
+			border-radius: 20px;
+			background-color: #2d2d2d;
+			padding: 50px;
+			box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+		}
+		h1 {
+			font-weight: bold;
+			font-size: 48px;
+			text-align: center;
+			margin-bottom: 30px;
+		}
+		p {
+			font-size: 24px;
+			text-align: center;
+			margin-bottom: 50px;
+		}
+		.button {
+			display: inline-block;
+			padding: 10px 30px;
+			border-radius: 10px;
+			background-color: #fff;
+			font-weight: boldand;
+			text-decoration: none;
+			transition: all 0.3s ease;
+			margin-top: 20px;
+		}
+		.button:hover {
+			background-color: #ddd;
+			color: #1f1f1f;
+			transform: translateY(-5px);
+			box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+		}
+		@media screen and (max-width: 768px) {
+			.container {
+				width: 90%;
+				padding: 30px;
+			}
+			h1 {
+				font-size: 36px;
+				margin-bottom: 20px;
+			}
+			p {
+				font-size: 18px;
+				margin-bottom: 30px;
+			}
+			.button {
+				padding: 8px 20px;
+				margin-top: 10px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Welcome to Viiah's website!</h1>
+		<p>This website is all about my socials and more, with many more updates to come!</p>
+		<a href="aboutme.html" class="button">Learn More</a>
+		<a href="index2.html" class="button">Old Landing Page</a>
+
+	</div>
+</body>
 </html>
