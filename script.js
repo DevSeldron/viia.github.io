@@ -1,37 +1,72 @@
-const toggleButton = document.getElementById('mode-toggle');
+const themeToggle = document.getElementById('theme-toggle');
+const menuToggle = document.getElementById('menu-toggle');
 const body = document.body;
+
+menuToggle.addEventListener('change', function() {
+  body.classList.toggle('menu-open');
+});
 
 let clickCounter = 0;
 let secretModeTimeout;
-
-toggleButton.addEventListener('click', function(event) {
-  event.preventDefault(); // Prevent the default link behavior
-
-  clearTimeout(secretModeTimeout); // Clear the previous timeout
-
-  clickCounter++;
-
-  // Check if the secret theme should be triggered
-  if (clickCounter >= 5) {
-    clickCounter = 0; // Reset the click counter
-    activateSecretMode();
-  } else {
-    body.classList.toggle('dark-mode');
-    body.classList.toggle('light-mode');
-  }
-
-  // Store the current theme preference in local storage
-  const currentTheme = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
-  localStorage.setItem('theme', currentTheme);
-});
+let isSecretModeActive = false;
 
 function activateSecretMode() {
   body.classList.add('secret-mode');
-  toggleButton.classList.add('disabled'); // Add a disabled class to style the disabled button appearance
+  menuToggle.classList.add('disabled'); // Add a disabled class to style the disabled button appearance
+  changeThemeButton.disabled = true;
+
+  isSecretModeActive = true;
 
   // Clear the secret mode after 3 seconds
   secretModeTimeout = setTimeout(function() {
     body.classList.remove('secret-mode');
-    toggleButton.classList.remove('disabled'); // Remove the disabled class
+    menuToggle.classList.remove('disabled'); // Remove the disabled class
+    isSecretModeActive = false;
   }, 3000);
 }
+
+// Check for saved theme and apply it
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  body.classList.add(savedTheme);
+  themeToggle.checked = savedTheme === 'dark-mode';
+}
+
+// Function to toggle the theme
+function toggleTheme() {
+  body.classList.toggle('dark-mode');
+  body.classList.toggle('light-mode');
+
+  const currentTheme = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+  localStorage.setItem('theme', currentTheme);
+}
+
+// Attach change event listener to the theme toggle checkbox
+themeToggle.addEventListener('change', function() {
+  // Check if the secret mode is active
+  if (!isSecretModeActive) {
+    // Toggle the theme
+    toggleTheme();
+  }
+});
+
+// Get the existing change theme button
+const changeThemeButton = document.getElementById('change-theme-button');
+
+// Attach click event listener to the change theme button
+changeThemeButton.addEventListener('click', function() {
+  // Check if the secret mode is active
+  if (!isSecretModeActive) {
+    // Toggle the theme
+    toggleTheme();
+
+    // Increment the click counter
+    clickCounter++;
+
+    // Check if the secret mode should be triggered
+    if (clickCounter >= 5) {
+      clickCounter = 0; // Reset the click counter
+      activateSecretMode();
+    }
+  }
+});
