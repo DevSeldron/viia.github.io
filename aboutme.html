@@ -18,6 +18,7 @@
   border: line;
   border-color: lightblue;
   border-radius: 7px;
+  font-family: sans-serif;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -26,13 +27,6 @@
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 9999;
-}
-
-.accept {
-  border-radius: 7px;
-}
-.decline {
-   border-radius: 7px;
 }
 		
 #confirmation-dialog p {
@@ -69,7 +63,7 @@
 	</div>
 <div id="confirmation-dialog" class="hidden">
   <p>Are you sure you want to be sent to this webpage?</p>
-  <button id="cancel-button class="decline"">Cancel</button>
+  <button id="cancel-button class="decline">Cancel</button>
   <button id="ok-button" class="accept">OK</button>
 </div>
 	<script>
