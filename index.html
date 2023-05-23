@@ -14,14 +14,32 @@
     @media only screen and (max-width: 767px) {
       .popup {
         display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+      }
+      
+      .popup-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        text-align: center;
       }
     }
   </style>
 </head>
 <body>
   <div class="popup">
-    <!-- Content of the popup -->
-    <h1>Please visit the mobile version of our website at <a href="https://viiah.com/mobileedition.html">https://viiah.com/mobileedition.html</a></h1>
+    <div class="popup-content">
+      <h1>Please visit the mobile version of our website at <a href="https://viiah.com/mobileedition.html">https://viiah.com/mobileedition.html</a></h1>
+    </div>
   </div>
   <header>
     <nav class="navbar">
@@ -43,7 +61,7 @@
   <script>
     // JavaScript to redirect mobile users to the mobile version
     if (window.innerWidth <= 767) {
-      window.location.href = "mobileedition.html";
+      document.querySelector('.popup').style.display = 'block';
     }
   </script>
 </body>
