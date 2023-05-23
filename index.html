@@ -6,55 +6,56 @@
 </head>
 <body>
   <style>
-    #gradient {
-	 width: 100%;
-	 height: 100%;
-	 position: absolute;
-	 background: linear-gradient(270deg, #073763, #0b5394, #3d85c6, #6fa8dc, #9fc5e8, #c8bede, #b3a6d5, #8675b8, #674ea7, #351c75, #741b47, #a64d79, #c27ba0, #d5a6bd, #d8aca4, #dd7e6b, #cc4125, #a61c00, #85200c, #571407);
-	 background-size: 2000% 2000%;
-	 animation: colors 30s ease infinite;
-}
- @keyframes colors {
-	 0% {
-		 background-position: 0% 50%;
-	}
-	 50% {
-		 background-position: 100% 50%;
-	}
-	 100% {
-		 background-position: 0% 50%;
-	}
-}
-  		@media screen and (max-width: 768px) {
-			.mobile-warning {
-				display: block;
-				padding: 20px;
-				background-color: #f44336;
-				color: #fff;
-				text-align: center;
-				font-size: 24px;
-				font-weight: bold;
-			}
-			.desktop-only {
-				display: none;
-			}
+ 		.popup {
+			display: none; /* Hide by default */
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+			z-index: 9999;
 		}
-		@media screen and (min-width: 769px) {
-			.mobile-warning {
-				display: none;
-			}
-			.desktop-only {
-				display: block;
+		.popup-content {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			text-align: center;
+		}
+		.popup-close {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			font-size: 24px;
+			cursor: pointer;
+		}
+
+		/* Show popup for phone screens */
+		@media (max-width: 767px) {
+			.popup {
+				display: block; /* Show popup */
 			}
 		}
 	</style>
 </head>
 <body>
-	<div class="container" id="gradient">
+	<div class="popup">
+		<div class="popup-content">
+			<p>Please visit our mobile version of the website.</p>
+			<a href="mobileedition.html">Go to mobile version</a>
+			<span class="popup-close">&times;</span>
+		</div>
+	</div>
+	<div class="container" id="mobile-warning">
 		<p>Oops! You're visiting the PC version of my website on your phone!</p>
 		<a href="mobileedition.html" class="button">Mobile Version</a>
 	</div>
-	<div class="container" id="gradient">
+	<div class="container" id="desktop-only">
 		<h1>Welcome to Viiah's Website!</h1>
 		<p>This is the desktop version of my website. Check out my mobile version for a better experience on your phone!</p>
 		<a href="mobileedition.html" class="button">Mobile Version</a>
@@ -74,7 +75,13 @@
   <a href="aboutme.html" class="button">Learn More</a>
   <a href="index2.html" class="button">Old Landing Page</a>
   <a href="qna.html" class="button">Info about me (Q&A)</a>
-	<a href="mobileedition.html" class="button">Mobile Version</a>
+  <a href="mobileedition.html" class="button">Mobile Version</a>
 </div>
+	<script type="text/javascript">
+		// Close the popup when the close button is clicked
+		document.querySelector('.popup-close').addEventListener('click', function() {
+			document.querySelector('.popup').style.display = 'none';
+		});
+	</script>
 </body>
 </html>
