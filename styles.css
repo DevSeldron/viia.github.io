@@ -46,6 +46,110 @@
   opacity: 0.6; /* Reduce the opacity of the disabled button */
 }
 
+/* Hamburger Menu Styles */
+.hamburger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+}
+
+.menu-button {
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+  margin-top: 5px;
+}
+
+.menu-button:hover .hamburger,
+.menu-button:hover .hamburger::before,
+.menu-button:hover .hamburger::after {
+  background-color: #fff;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  background-color: #333;
+  padding: 20px;
+  list-style: none;
+}
+
+#menu-toggle:checked ~ .menu {
+  display: block;
+}
+
+.menu li {
+  margin-bottom: 10px;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Theme Toggle Button Styles */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.toggle-button {
+  display: inline-block;
+  cursor: pointer;
+  width: 40px;
+  height: 20px;
+  background-color: #333;
+  border-radius: 10px;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+#theme-toggle {
+  display: none;
+}
+
+#theme-toggle:checked ~ .toggle-button {
+  background-color: #fff;
+}
+
+#theme-toggle:checked ~ .toggle-button .toggle-icon {
+  transform: translateX(20px);
+}
 
 #container {
   width: 80%;
