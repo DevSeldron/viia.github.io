@@ -4,45 +4,16 @@
   <meta charset="UTF-8">
   <title>Viiah's Website</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Default styles for the popup */
-    .popup {
-      display: none;
-    }
-
-    /* Styles for mobile devices */
-    @media only screen and (max-width: 767px) {
-      .popup {
-       color: red;
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 9999;
-      }
-
-      .popup-content {
-        color: red;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        text-align: center;
-      }
-    }
-  </style>
 </head>
 <body>
-  <div class="popup">
-    <div class="popup-content">
-      <h1>Please visit the mobile version of our website at <a href="https://viiah.com/mobileedition.html">https://viiah.com/mobileedition.html</a></h1>
-    </div>
-  </div>
+  <script>
+    // JavaScript to redirect mobile users to the mobile version
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = "mobileedition.html";
+    }
+  </script>
+
   <header>
     <nav class="navbar">
       <ul class="menu">
@@ -52,6 +23,7 @@
       </ul>
     </nav>
   </header>
+
   <div id="gradient" class="container">
     <h1>Welcome to Viiah's website!</h1>
     <p>This website is all about my socials and more, with many more updates to come!</p>
@@ -60,12 +32,5 @@
     <a href="qna.html" class="button">Info about me (Q&A)</a>
     <a href="mobileedition.html" class="button">Mobile Version</a>
   </div>
-  <script>
-    // JavaScript to show the popup on mobile devices
-    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (isMobile) {
-      document.querySelector('.popup').style.display = 'block';
-    }
-  </script>
 </body>
 </html>
