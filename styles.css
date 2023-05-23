@@ -1,6 +1,6 @@
- body {
+body {
   font-family: "Google Sans", sans-serif;
-  background-color: #2f2f2f;
+  background-color: #1f1f1f;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -12,149 +12,21 @@
   transition: background 0.2s linear;
 }
 
-.dark-mode {
-  --bg-color: #2d2d2d;
-  --text-color: #fff;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
 .light-mode {
   --bg-color: #ffffff;
   --text-color: #333333;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-.secret-mode {
- background-color: #762f9a;
- color: #ffffff;
 }
 
-/* Other styles for the secret mode */
-.secret-mode .container {
-  border-color: #ffffff;
-}
-
-.secret-mode h1,
-.secret-mode p,
-.secret-mode .button {
-  color: #ffffff;
-}
-
-.button.disabled {
-  pointer-events: none; /* Disable pointer events on the disabled button */
-  opacity: 0.6; /* Reduce the opacity of the disabled button */
-}
-
-/* Hamburger Menu Styles */
-.hamburger-menu {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 9999;
-}
-
-.menu-button {
-  display: inline-block;
-  cursor: pointer;
-  padding: 10px;
-}
-
-.hamburger,
-.hamburger::before,
-.hamburger::after {
-  content: "";
-  display: block;
-  width: 25px;
-  height: 3px;
-  background-color: #333;
-  transition: background-color 0.3s ease;
-}
-
-.hamburger::before,
-.hamburger::after {
-  margin-top: 5px;
-}
-
-.menu-button:hover .hamburger,
-.menu-button:hover .hamburger::before,
-.menu-button:hover .hamburger::after {
-  background-color: #fff;
-}
-
-#menu-toggle {
-  display: none;
-}
-
-.menu {
-  display: none;
-  position: absolute;
-  top: 60px;
-  left: 20px;
-  background-color: #333;
-  padding: 20px;
-  list-style: none;
-}
-
-#menu-toggle:checked ~ .menu {
-  display: block;
-}
-
-.menu li {
-  margin-bottom: 10px;
-}
-
-.menu a {
+.dark-mode {
+  background-color: #1f1f1f;
   color: #fff;
-  text-decoration: none;
-}
-
-/* Theme Toggle Button Styles */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-}
-
-.toggle-button {
-  display: inline-block;
-  cursor: pointer;
-  width: 40px;
-  height: 20px;
-  background-color: #333;
-  border-radius: 10px;
-  position: relative;
-  transition: background-color 0.3s ease;
-}
-
-.toggle-icon {
-  display: block;
-  width: 16px;
-  height: 16px;
-  background-color: #fff;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: transform 0.3s ease;
-}
-
-#theme-toggle {
-  display: none;
-}
-
-#theme-toggle:checked ~ .toggle-button {
-  background-color: #fff;
-}
-
-#theme-toggle:checked ~ .toggle-button .toggle-icon {
-  transform: translateX(20px);
 }
 
 #container {
   width: 80%;
   margin: 0 auto;
   border-radius: 20px;
+  background-color: #2d2d2d;
   padding: 50px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
@@ -162,12 +34,14 @@
 h1 {
   font-weight: bold;
   font-size: 48px;
+  color: #fff;
   text-align: center;
   margin-bottom: 30px;
 }
 
 p {
   font-size: 24px;
+  color: #fff;
   text-align: center;
   margin-bottom: 50px;
 }
@@ -178,8 +52,7 @@ p {
   align-items: center;
   padding: 10px 30px;
   border-radius: 10px;
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: #fff;
   font-weight: bold;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -210,4 +83,107 @@ p {
     padding: 8px 20px;
     margin-top: 10px;
   }
+}
+
+/* Hamburger Menu Styles */
+#menu-toggle {
+  display: none;
+}
+
+.menu-icon {
+  display: block;
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.menu-icon span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  border-radius: 3px;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.menu-icon span:nth-child(1) {
+  top: 0;
+}
+
+.menu-icon span:nth-child(2),
+.menu-icon span:nth-child(3) {
+  top: 8px;
+}
+
+.menu-icon span:nth-child(4) {
+  bottom: 0;
+}
+
+.menu-open .menu-icon span:nth-child(1) {
+  top: 8px;
+  width: 0;
+  left: 50%;
+}
+
+.menu-open .menu-icon span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+.menu-open .menu-icon span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.menu-open .menu-icon span:nth-child(4) {
+  bottom: 8px;
+  width: 0;
+  left: 50%;
+}
+
+.menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+  overflow: hidden;
+}
+
+.menu-open .menu {
+  display: block;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.menu ul li {
+  margin-bottom: 20px;
+}
+
+.menu ul li a {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+/* Secret Theme */
+.secret-mode {
+  background-color: #000000 !important;
+  color: #ffffff !important;
 }
