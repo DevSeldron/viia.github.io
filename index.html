@@ -10,7 +10,7 @@
       display: none;
     }
 
-    /* Media query for mobile devices */
+    /* Styles for mobile devices */
     @media only screen and (max-width: 767px) {
       .popup {
         display: block;
@@ -22,7 +22,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 9999;
       }
-      
+
       .popup-content {
         position: absolute;
         top: 50%;
@@ -59,8 +59,9 @@
     <a href="mobileedition.html" class="button">Mobile Version</a>
   </div>
   <script>
-    // JavaScript to redirect mobile users to the mobile version
-    if (window.innerWidth <= 767) {
+    // JavaScript to show the popup on mobile devices
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
       document.querySelector('.popup').style.display = 'block';
     }
   </script>
