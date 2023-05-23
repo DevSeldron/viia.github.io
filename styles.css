@@ -58,7 +58,7 @@ p {
   border-color: red;
   border: 5px solid white;
   transition: background-color 0.3s ease;
-  margin-bottom: 7px;
+  margin-bottom: 5px;
 }
 
 .button:hover {
