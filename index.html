@@ -1,12 +1,11 @@
-<html lang="en" >
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Viiah's Website</title>
   <link rel="stylesheet" href="styles.css">
-</head>
-<body>
   <style>
-   /* Default styles for the popup */
+    /* Default styles for the popup */
     .popup {
       display: none;
     }
@@ -17,14 +16,14 @@
         display: block;
       }
     }
-	</style>
+  </style>
 </head>
 <body>
-   <div class="popup">
+  <div class="popup">
     <!-- Content of the popup -->
-    <h1>Please visit the mobile version of our website at https://viiah.com/mobileedition.html</h1>
+    <h1>Please visit the mobile version of our website at <a href="https://viiah.com/mobileedition.html">https://viiah.com/mobileedition.html</a></h1>
   </div>
-	<header>
+  <header>
     <nav class="navbar">
       <ul class="menu">
         <li><a href="index.html">Home</a></li>
@@ -33,15 +32,15 @@
       </ul>
     </nav>
   </header>
-<div id="gradient" class="container">
-  <h1>Welcome to Viiah's website!</h1>
-  <p>This website is all about my socials and more, with many more updates to come!</p>
-  <a href="aboutme.html" class="button">Learn More</a>
-  <a href="index2.html" class="button">Old Landing Page</a>
-  <a href="qna.html" class="button">Info about me (Q&A)</a>
-  <a href="mobileedition.html" class="button">Mobile Version</a>
-</div>
-	  <script>
+  <div id="gradient" class="container">
+    <h1>Welcome to Viiah's website!</h1>
+    <p>This website is all about my socials and more, with many more updates to come!</p>
+    <a href="aboutme.html" class="button">Learn More</a>
+    <a href="index2.html" class="button">Old Landing Page</a>
+    <a href="qna.html" class="button">Info about me (Q&A)</a>
+    <a href="mobileedition.html" class="button">Mobile Version</a>
+  </div>
+  <script>
     // JavaScript to redirect mobile users to the mobile version
     if (window.innerWidth <= 767) {
       window.location.href = "mobileedition.html";
