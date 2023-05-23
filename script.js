@@ -13,7 +13,7 @@ let isSecretModeActive = false;
 function activateSecretMode() {
   body.classList.add('secret-mode');
   menuToggle.classList.add('disabled'); // Add a disabled class to style the disabled button appearance
-  changeThemeButton.disabled = true;
+  changeThemeButton.disabled = true; // Disable the "Change Theme" button
 
   isSecretModeActive = true;
 
@@ -21,6 +21,7 @@ function activateSecretMode() {
   secretModeTimeout = setTimeout(function() {
     body.classList.remove('secret-mode');
     menuToggle.classList.remove('disabled'); // Remove the disabled class
+    changeThemeButton.disabled = false; // Enable the "Change Theme" button
     isSecretModeActive = false;
   }, 3000);
 }
