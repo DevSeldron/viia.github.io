@@ -4,24 +4,6 @@ const body = document.body;
 let clickCounter = 0;
 let secretModeTimeout;
 
-// Retrieve the saved theme from local storage when the page loads
-window.addEventListener('DOMContentLoaded', function() {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark-mode') {
-    body.classList.add('dark-mode');
-  } else if (savedTheme === 'light-mode') {
-    body.classList.add('light-mode');
-  }
-});
-
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark-mode') {
-    document.body.classList.add('dark-mode');
-  } else if (savedTheme === 'light-mode') {
-    document.body.classList.add('light-mode');
-  }
-});
-
 toggleButton.addEventListener('click', function(event) {
   event.preventDefault(); // Prevent the default link behavior
 
@@ -52,4 +34,4 @@ function activateSecretMode() {
     body.classList.remove('secret-mode');
     toggleButton.classList.remove('disabled'); // Remove the disabled class
   }, 3000);
-window.addEventListener('DOMContentLoaded', function() {
+}
