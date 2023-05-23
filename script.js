@@ -4,6 +4,16 @@ const body = document.body;
 let clickCounter = 0;
 let secretModeTimeout;
 
+// Retrieve the saved theme from local storage when the page loads
+window.addEventListener('DOMContentLoaded', function() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark-mode') {
+    body.classList.add('dark-mode');
+  } else if (savedTheme === 'light-mode') {
+    body.classList.add('light-mode');
+  }
+});
+
 toggleButton.addEventListener('click', function(event) {
   event.preventDefault(); // Prevent the default link behavior
 
@@ -35,17 +45,3 @@ function activateSecretMode() {
     toggleButton.classList.remove('disabled'); // Remove the disabled class
   }, 3000);
 }
-// Check if the theme preference is already set in local storage
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-  body.classList.add(savedTheme);
-}
-
-toggleButton.addEventListener('click', function() {
-  body.classList.toggle('dark-mode');
-  body.classList.toggle('light-mode');
-
-  // Store the current theme preference in local storage
-  const currentTheme = body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
-  localStorage.setItem('theme', currentTheme);
-});
