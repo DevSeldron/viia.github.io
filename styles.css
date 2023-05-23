@@ -20,14 +20,34 @@
 }
 
 .light-mode {
-  --bg-color: #d3d3d3;
-  --text-color: #333;
+  --bg-color: #ffffff;
+  --text-color: #333333;
   background-color: var(--bg-color);
   color: var(--text-color);
 }
+.secret-mode {
+ background-color: #762f9a;
+ color: #ffffff;
+}
+
+/* Other styles for the secret mode */
+.secret-mode .container {
+  border-color: #ffffff;
+}
+
+.secret-mode h1,
+.secret-mode p,
+.secret-mode .button {
+  color: #ffffff;
+}
+
+.button.disabled {
+  pointer-events: none; /* Disable pointer events on the disabled button */
+  opacity: 0.6; /* Reduce the opacity of the disabled button */
+}
+
 
 #container {
-  background-color: #fff;
   width: 80%;
   margin: 0 auto;
   border-radius: 20px;
