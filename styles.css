@@ -60,18 +60,26 @@ p {
   color: #ffffff;
 }
 
-.popup {
-  position: fixed;
-  bottom: -50px;
-  left: 0;
-  right: 0;
-  background-color: #333333;
-  color: #ffffff;
-  padding: 10px;
-  text-align: center;
-  transition: bottom 0.3s ease;
+/* Add this CSS code to your styles.css file */
+.hidden {
+  display: none;
 }
 
-.popup.show {
-  bottom: 0;
+#confirmation-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+#confirmation-dialog p {
+  margin-bottom: 10px;
+}
+
+#confirmation-dialog button {
+  margin-right: 10px;
 }
