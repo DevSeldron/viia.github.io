@@ -1,7 +1,7 @@
 const toggleButton = document.getElementById('mode-toggle');
 const body = document.body;
-const container = document.getElementById('container');
 
+// Check if the theme preference is already set in local storage
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
   body.classList.add(savedTheme);
