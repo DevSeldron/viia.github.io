@@ -6,68 +6,25 @@
 </head>
 <body>
   <style>
- .popup {
-			display: none; /* Hide by default */
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-			z-index: 9999;
-		}
-		.popup-content {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			background-color: #fff;
-			padding: 20px;
-			border-radius: 5px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-			text-align: center;
-		}
-		.popup-close {
-			position: absolute;
-			top: 10px;
-			right: 10px;
-			font-size: 24px;
-			cursor: pointer;
-		}
+   /* Default styles for the popup */
+    .popup {
+      display: none;
+    }
 
-		/* Show popup for phone screens */
-		@media only screen and (max-width: 767px) {
-			.popup {
-				display: block;
-			}
-		}
-
-		/*Hide popup for desktop screens */
-		@media only screen and (min-width: 768px) {
-			.popup {
-				display: none;
-			}
-		}
+    /* Media query for mobile devices */
+    @media only screen and (max-width: 767px) {
+      .popup {
+        display: block;
+      }
+    }
 	</style>
 </head>
 <body>
-	<div class="popup">
-		<div class="popup-content">
-			<p>Please visit our mobile version of the website.</p>
-			<a href="mobileedition.html">Go to mobile version</a>
-			<span class="popup-close">&times;</span>
-		</div>
-	</div>
-	<div class="container" id="mobile-warning">
-		<p>Oops! You're visiting the PC version of my website on your phone!</p>
-		<a href="mobileedition.html" class="button">Mobile Version</a>
-	</div>
-	<div class="container" id="desktop-only">
-		<h1>Welcome to Viiah's Website!</h1>
-		<p>This is the desktop version of my website. Check out my mobile version for a better experience on your phone!</p>
-		<a href="mobileedition.html" class="button">Mobile Version</a>
-	</div>
-    <header>
+   <div class="popup">
+    <!-- Content of the popup -->
+    <h1>Please visit the mobile version of our website at https://viiah.com/mobileedition.html</h1>
+  </div>
+	<header>
     <nav class="navbar">
       <ul class="menu">
         <li><a href="index.html">Home</a></li>
@@ -84,11 +41,11 @@
   <a href="qna.html" class="button">Info about me (Q&A)</a>
   <a href="mobileedition.html" class="button">Mobile Version</a>
 </div>
-<script type="text/javascript">
-		// Close the popup when the close button is clicked
-		document.querySelector('.popup-close').addEventListener('click', function() {
-			document.querySelector('.popup').style.display = 'none';
-		});
-	</script>
+	  <script>
+    // JavaScript to redirect mobile users to the mobile version
+    if (window.innerWidth <= 767) {
+      window.location.href = "mobileedition.html";
+    }
+  </script>
 </body>
 </html>
