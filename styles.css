@@ -1,5 +1,5 @@
 body {
-  background-color: transparent;
+  background-color: #000;
   font-family: "Google Sans", sans-serif;
   margin: 0;
   padding: 0;
@@ -31,12 +31,10 @@ p {
 .button {
   display: inline-block;
   padding: 10px 20px;
-  background-color: transparent;
+  background-color: #222222;
   color: #ffffff;
   text-decoration: none;
   border-radius: 10px;
-  border-color: red;
-  border: 5px solid white;
   transition: background-color 0.3s ease;
   margin-bottom: 5px;
 }
