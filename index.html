@@ -6,7 +6,7 @@
 </head>
 <body>
   <style>
- 		.popup {
+ .popup {
 			display: none; /* Hide by default */
 			position: fixed;
 			top: 0;
@@ -36,9 +36,16 @@
 		}
 
 		/* Show popup for phone screens */
-		@media (max-width: 767px) {
+		@media only screen and (max-width: 767px) {
 			.popup {
-				display: block; /* Show popup */
+				display: block;
+			}
+		}
+
+		/*Hide popup for desktop screens */
+		@media only screen and (min-width: 768px) {
+			.popup {
+				display: none;
 			}
 		}
 	</style>
@@ -77,7 +84,7 @@
   <a href="qna.html" class="button">Info about me (Q&A)</a>
   <a href="mobileedition.html" class="button">Mobile Version</a>
 </div>
-	<script type="text/javascript">
+<script type="text/javascript">
 		// Close the popup when the close button is clicked
 		document.querySelector('.popup-close').addEventListener('click', function() {
 			document.querySelector('.popup').style.display = 'none';
