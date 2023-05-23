@@ -8,7 +8,32 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-	  <header>
+	<style>
+		/* Add this CSS code to your styles.css file */
+.hidden {
+  display: none;
+}
+
+#confirmation-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+#confirmation-dialog p {
+  margin-bottom: 10px;
+}
+
+#confirmation-dialog button {
+  margin-right: 10px;
+}
+	</style>
+	<header>
     <nav class="navbar">
       <div class="hamburger">
         <div class="line"></div>
@@ -37,6 +62,35 @@
   <button id="cancel-button">Cancel</button>
   <button id="ok-button">OK</button>
 </div>
-	  <script src="script.js"></script>
+	<script>
+	window.addEventListener('DOMContentLoaded', function() {
+  const links = document.querySelectorAll('a');
+  const confirmationDialog = document.getElementById('confirmation-dialog');
+  const cancelButton = document.getElementById('cancel-button');
+  const okButton = document.getElementById('ok-button');
+
+  // Function to show the confirmation dialog
+  function showConfirmationDialog(url) {
+    confirmationDialog.classList.remove('hidden');
+    
+    cancelButton.addEventListener('click', function() {
+      confirmationDialog.classList.add('hidden');
+    });
+
+    okButton.addEventListener('click', function() {
+      window.location.href = url; // Redirect to the clicked URL
+    });
+  }
+
+  // Add click event listener to each link
+  links.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the default link behavior
+      const url = link.getAttribute('href');
+      showConfirmationDialog(url);
+    });
+  });
+});
+	</script>
 </body>
 </html>
