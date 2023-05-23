@@ -13,6 +13,18 @@
 			margin: 0;
 			padding: 0;
 		}
+		.theme-dark {
+                  --color-primary: #1f1f1f;
+                  --color-secondary: #243133;
+                  --color-accent: #1f1f1f;
+                  --font-color: #ffffff;
+                }
+                .theme-light {
+                   --color-primary: #2d2d2d;
+                   --color-secondary: #fbfbfe;
+                   --color-accent: #2d2d2d;
+                   --font-color: #000000;
+}
 		.container {
 			width: 80%;
 			margin: 0 auto;
@@ -67,10 +79,6 @@
 				padding: 8px 20px;
 				margin-top: 10px;
 			}
-                        .light-mode {
-                          background-color: white;
-                          color: black;
-                         }
 	</style>
 </head>
 <body>
@@ -80,13 +88,30 @@
 		<a href="aboutme.html" class="button">Learn More</a>
 		<a href="index2.html" class="button">Old Landing Page</a>
 		<a href="qna.html" class="button">Info about me (Q&A)</a>
-                <button onclick="myFunction()" class="button">Toggle light mode</button>
+                <button id="button" onclick="toggleTheme()">Switch Theme</button>
 	</div>
 	<script>
-         function myFunction() {
-           var element = document.body;
-           element.classList.toggle("light-mode");
+		// function to set a given theme/color-scheme
+function setTheme(themeName) {
+    localStorage.setItem('theme', themeName);
+    document.documentElement.className = themeName;
 }
+// function to toggle between light and dark theme
+function toggleTheme() {
+   if (localStorage.getItem('theme') === 'theme-dark'){
+       setTheme('theme-light');
+   } else {
+       setTheme('theme-dark');
+   }
+}
+// Immediately invoked function to set the theme on initial load
+(function () {
+   if (localStorage.getItem('theme') === 'theme-dark') {
+       setTheme('theme-dark');
+   } else {
+       setTheme('theme-light');
+   }
+})();
 	</script>
 </body>
 </html>
