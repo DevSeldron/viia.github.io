@@ -59,3 +59,19 @@ p {
   text-decoration: none;
   color: #ffffff;
 }
+
+.popup {
+  position: fixed;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  background-color: #333333;
+  color: #ffffff;
+  padding: 10px;
+  text-align: center;
+  transition: bottom 0.3s ease;
+}
+
+.popup.show {
+  bottom: 0;
+}
