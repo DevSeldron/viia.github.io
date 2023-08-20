@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Custom CSS */
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 24px;
+      margin: 20px 0;
+    }
+    .header {
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .btn-group {
+      margin-bottom: 10px;
+    }
+    .btn-group button {
+      background-color: orange;
+    }
+    .btn-group button:not(:last-child) {
+      margin-right: 10px;
+    }
+    .card {
+      background-color: transparent;
+      border: none;
+    }
+    .card-body {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 15px;
+    }
+    .card-title, .card-text, .card-date {
+      color: white;
+    }
+    .card-date {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 5px;
+    }
+  </style>
+  <title>PostPrivate</title>
+</head>
+<body>
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <div class="logo">PostPrivate</div>
+        <div class="header">Notes, but temporary and stored in your browser.</div>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="addNote()">Add Note</button>
+    </div>
+    
+    <form id="noteForm" class="mb-3">
+      <div class="form-group">
+        <label for="noteTitle">Title:</label>
+        <input type="text" class="form-control" id="noteTitle" required>
+      </div>
+      <div class="form-group">
+        <label for="noteContent">Content:</label>
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary" onclick="formatText('bold')"><strong>B</strong></button>
+          <button type="button" class="btn btn-secondary" onclick="formatText('italic')"><em>I</em></button>
+          <button type="button" class="btn btn-secondary" onclick="formatText('underline')"><u>U</u></button>
+        </div>
+        <div contenteditable="true" class="form-control" id="noteContent" rows="4" required></div>
+      </div>
+    </form>
+    
+    <div id="notesList"></div>
+  </div>
+
+  <script>
+    // Load existing notes from Local Storage when the page loads
+    window.onload = function () {
+      var savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
+      for (var i = savedNotes.length - 1; i >= 0; i--) {
+        displayNote(savedNotes[i]);
+      }
+    }
+
+    function addNote() {
+      var title = document.getElementById('noteTitle').value;
+      var content = document.getElementById('noteContent').innerHTML;
+
+      var note = { title: title, content: content, date: new Date().toLocaleString() };
+      var savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
+      savedNotes.push(note);
+      localStorage.setItem('notes', JSON.stringify(savedNotes));
+
+      displayNote(note, true); // Prepend the note
+
+      document.getElementById('noteTitle').value = '';
+      document.getElementById('noteContent').innerHTML = '';
+    }
+
+    function displayNote(note, prepend = false) {
+      var noteHTML = '<div class="card mb-3"><div class="card-body"><h5 class="card-title">' + note.title + '</h5><p class="card-text">' + note.content + '</p><p class="card-date">' + note.date + '</p></div></div>';
+      
+      if (prepend) {
+        document.getElementById('notesList').insertAdjacentHTML('afterbegin', noteHTML);
+      } else {
+        document.getElementById('notesList').insertAdjacentHTML('beforeend', noteHTML);
+      }
+    }
+
+    function formatText(action) {
+      document.execCommand(action, false, null);
+    }
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
