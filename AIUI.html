@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI UI</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<div id="welcomeModal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Welcome to AIUI!</h5>
+        <button type="button" class="close" id="liveToastBtn" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        AIUI is a very simple User Interface for GPT. I hope you enjoy!
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Alert</strong>
+      <small>Just Now</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      You will need a functional OpenAI API Key to use this.
+    </div>
+  </div>
+</div>
+  <style>
+  body {
+    background-color: #262728;
+    color: white;
+  }
+    .message {
+      margin-bottom: 10px;
+    }
+    .role {
+      font-weight: bold;
+    }
+    .user {
+      color: blue;
+    }
+    .assistant {
+      color: green;
+    }
+    #chatMenu {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .privacy {
+        text-alignment: center;
+        margin-left: 30px;
+        margin-top: 20px;
+        font-size: 15px;
+    }
+    #chatMenu {
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+    color: black;
+  }
+  
+  .modal.show {
+    display: block;
+    opacity: 1;
+  }
+  
+  .modal-dialog {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    width: 80%;
+    max-width: 500px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toast {
+      background-color: #464241;
+  }
+  .toast-header {
+      background-color: #464241;
+      color: white;
+  }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <h1>AIUI</h1>
+
+    <!-- API Key Form -->
+    <form id="apiKeyForm" onsubmit="setApiKey(event)">
+      <div class="form-group">
+        <label for="apiKeyInput">API Key:</label>
+        <input type="text" class="form-control" id="apiKeyInput" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Set API Key</button>
+    </form>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <!-- Chat Form -->
+        <form id="gptForm" onsubmit="generateResponse(event)">
+          <div class="form-group">
+            <label for="inputText">Enter your message:</label>
+            <input type="text" class="form-control" id="inputText" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <!-- Conversation Display -->
+        <div id="chatMenu" class="border p-3">
+          <h5>Chat Menu</h5>
+          <hr>
+          <ul id="chatMenuList" class="list-unstyled"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Generated Response Display -->
+    <div class="mt-4">
+      <h3>Generated Response:</h3>
+      <div id="responseSection"></div>
+    </div>
+  </div>
+
+  <script>
+    let apiKey = '';
+    let conversation = [];
+
+    function setApiKey(event) {
+      event.preventDefault();
+
+      const apiKeyInput = document.getElementById('apiKeyInput').value;
+      apiKey = apiKeyInput;
+      document.getElementById('apiKeyInput').value = ''; // Clear the input field
+    }
+
+    function generateResponse(event) {
+      event.preventDefault();
+
+      const inputText = document.getElementById('inputText').value;
+
+      const endpointUrl = 'https://api.openai.com/v1/chat/completions';
+
+      conversation.push({ role: 'user', content: inputText });
+
+      fetch(endpointUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: conversation
+        })
+      })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          const generatedMessage = data.choices[0].message.content;
+
+          conversation.push({ role: 'assistant', content: generatedMessage });
+
+          const responseSection = document.getElementById('responseSection');
+          responseSection.innerHTML = generatedMessage;
+
+          updateChatMenu(conversation);
+        })
+        .catch(function(error) {
+          console.error(error);
+        });
+
+      document.getElementById('inputText').value = ''; // Clear the input field
+    }
+
+    function updateChatMenu(conversation) {
+      const chatMenuList = document.getElementById('chatMenuList');
+      chatMenuList.innerHTML = '';
+
+      conversation.forEach(function(message, index) {
+        const listItem = document.createElement('li');
+        listItem.classList.add('mb-2');
+
+        const roleElement = document.createElement('div');
+        roleElement.classList.add('role');
+        roleElement.textContent = message.role.charAt(0).toUpperCase() + message.role.slice(1);
+
+        const contentElement = document.createElement('div');
+        contentElement.classList.add('content');
+        contentElement.textContent = message.content;
+
+        listItem.appendChild(roleElement);
+        listItem.appendChild(contentElement);
+
+        if (message.role === 'assistant') {
+          listItem.classList.add('text-success');
+        } else {
+          listItem.classList.add('text-primary');
+        }
+
+        if (index === conversation.length - 1) {
+          listItem.classList.add('font-weight-bold');
+        }
+
+        chatMenuList.appendChild(listItem);
+      });
+
+      // Scroll to the bottom of the chat menu
+      const chatMenu = document.getElementById('chatMenu');
+      chatMenu.scrollTop = chatMenu.scrollHeight;
+    }
+  </script>
+<script>
+  // Check if the user has visited the website before
+  const visitedBefore = localStorage.getItem('visitedBefore');
+
+  // If not visited before, show the welcome dialog
+  if (!visitedBefore) {
+    const welcomeModal = document.getElementById('welcomeModal');
+    welcomeModal.classList.add('show');
+
+    // Set visitedBefore in localStorage to remember the visit
+    localStorage.setItem('visitedBefore', 'true');
+  }
+
+  // Close the modal when the close button is clicked
+  const closeButton = document.querySelector('#welcomeModal .close');
+  closeButton.addEventListener('click', () => {
+    const welcomeModal = document.getElementById('welcomeModal');
+    welcomeModal.classList.remove('show');
+  });
+  const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')
+
+if (toastTrigger) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+  toastTrigger.addEventListener('click', () => {
+    toastBootstrap.show()
+  })
+}
+</script>
+  <h4 class="privacy"> NOTICE: I, the website creator, can not access or see your API Key that you enter. I value your privacy as much as I can. That's the reason I made a local browser-based note-taking app, so I can't see your private notes. </h4>
+</body>
+</html>
