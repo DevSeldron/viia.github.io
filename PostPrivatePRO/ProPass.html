@@ -1,47 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enter Password</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #1e1e1e;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .password-container {
-      text-align: center;
-      background-color: #333;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .password-container input {
-      padding: 8px;
-      margin-right: 10px;
-    }
-
-    .password-container button {
-      padding: 8px 15px;
-      background-color: #007bff;
-      border: none;
-      border-radius: 5px;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .password-container button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  <!-- ... -->
 </head>
 <body>
   <div class="password-container">
@@ -51,20 +11,34 @@
     <p id="errorMessage" style="color: red; display: none;">Incorrect password. Please try again.</p>
   </div>
   <script>
-    const correctPassword = "PostPrivately";
+    const encryptedPassword = "CbfgCeivynlg"; // Encrypted "PostPrivately" using ROT13
     const passwordInput = document.getElementById("passwordInput");
     const passwordSubmit = document.getElementById("passwordSubmit");
     const errorMessage = document.getElementById("errorMessage");
 
     passwordSubmit.addEventListener("click", () => {
       const enteredPassword = passwordInput.value;
-      if (enteredPassword === correctPassword) {
+      if (encrypt(enteredPassword) === encryptedPassword) {
         localStorage.setItem("hasEnteredPassword", "true");
         window.location.href = "main.html"; // Redirect to the main content page
       } else {
         errorMessage.style.display = "block";
       }
     });
+
+    function encrypt(password) 
+      const result = [];
+      for (let i = 0; i < password.length; i++) {
+        let charCode = password.charCodeAt(i);
+        if (charCode >= 65 && charCode <= 90) {
+          charCode = ((charCode - 65 + 13) % 26) + 65;
+        } else if (charCode >= 97 && charCode <= 122) {
+          charCode = ((charCode - 97 + 13) % 26) + 97;
+        }
+        result.push(String.fromCharCode(charCode));
+      }
+      return result.join("");
+    }
   </script>
 </body>
 </html>
