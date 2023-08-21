@@ -82,7 +82,7 @@
           <button type="button" class="btn btn-secondary" onclick="formatText('italic')"><em>I</em></button>
           <button type="button" class="btn btn-secondary" onclick="formatText('underline')"><u>U</u></button>
         </div>
-        <div contenteditable="true" class="form-control" id="noteContent" rows="4" required></div>
+        <div contenteditable="true" class="form-control" id="noteContent" rows="4" required oninput="adjustTextareaHeight()"></div>
       </div>
     </form>
     
@@ -98,6 +98,12 @@
       }
     }
 
+    function adjustTextareaHeight() {
+      var noteContent = document.getElementById('noteContent');
+      noteContent.style.height = 'auto';
+      noteContent.style.height = (noteContent.scrollHeight) + 'px';
+    }
+
     function addNote() {
       var title = document.getElementById('noteTitle').value;
       var content = document.getElementById('noteContent').innerHTML;
@@ -111,6 +117,7 @@
 
       document.getElementById('noteTitle').value = '';
       document.getElementById('noteContent').innerHTML = '';
+      adjustTextareaHeight(); // Adjust the height after clearing content
     }
 
     function displayNote(note, prepend = false) {
