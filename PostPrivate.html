@@ -9,14 +9,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Custom CSS */
-    body {
-      background-color: black;
-      color: white;
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+}
     .logo {
       font-weight: 700;
       font-size: 24px;
@@ -34,7 +33,7 @@
       margin-bottom: 10px;
     }
     .btn-group button {
-      background-color: orange;
+      background-color: #dc3545; /* Red buttons */
     }
     .btn-group button:not(:last-child) {
       margin-right: 10px;
@@ -56,6 +55,9 @@
       color: rgba(255, 255, 255, 0.5);
       margin-top: 5px;
     }
+    .list-btn-group {
+      display: none;
+    }
   </style>
   <title>PostPrivate</title>
 </head>
@@ -67,7 +69,9 @@
         <div class="header">Notes, but temporary and stored in your browser.</div>
       </div>
 
-      <button type="button" class="btn btn-primary" onclick="addNote()">Add Note</button>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="addNote()">Add Note</button>
+      </div>
     </div>
     
     <form id="noteForm" class="mb-3">
@@ -81,8 +85,10 @@
           <button type="button" class="btn btn-secondary" onclick="formatText('bold')"><strong>B</strong></button>
           <button type="button" class="btn btn-secondary" onclick="formatText('italic')"><em>I</em></button>
           <button type="button" class="btn btn-secondary" onclick="formatText('underline')"><u>U</u></button>
+          <button type="button" class="btn btn-secondary" onclick="formatText('insertUnorderedList')">&#9679; List</button>
+          <button type="button" class="btn btn-secondary" onclick="formatText('insertOrderedList')">1. List</button>
         </div>
-        <div contenteditable="true" class="form-control" id="noteContent" rows="4" required oninput="adjustTextareaHeight()"></div>
+        <div contenteditable="true" class="form-control" id="noteContent" required oninput="adjustTextareaHeight();"></div>
       </div>
     </form>
     
@@ -121,7 +127,9 @@
     }
 
     function displayNote(note, prepend = false) {
-      var noteHTML = '<div class="card mb-3"><div class="card-body"><h5 class="card-title">' + note.title + '</h5><p class="card-text">' + note.content + '</p><p class="card-date">' + note.date + '</p></div></div>';
+      var content = note.content.replace(/\n/g, '<br>'); // Replace line breaks with <br> tags
+      content = content.replace(/<li>/g, '&#9679; ').replace(/<\/li>/g, '<br>'); // Replace <li> with bullet and <br> for list display
+      var noteHTML = '<div class="card mb-3"><div class="card-body"><h5 class="card-title">' + note.title + '</h5><div class="card-text">' + content + '</div><p class="card-date">' + note.date + '</p></div></div>';
       
       if (prepend) {
         document.getElementById('notesList').insertAdjacentHTML('afterbegin', noteHTML);
