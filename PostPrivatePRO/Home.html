@@ -9,6 +9,35 @@
   <title>PostPrivate PRO</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles.css">
+<div id="welcomeModal" class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Welcome to PostPrivate PRO!</h5>
+        <button type="button" class="close" id="liveToastBtn" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <video width="320" height="240" controls>
+<source src="promotion.MP4">
+</video>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Alert</strong>
+      <small>Just Now</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Welcome to PostPrivate PRO!
+    </div>
+  </div>
+</div>
 </head>
 <body>
   <header class="text-center py-4">
@@ -32,5 +61,87 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+    color: black;
+  }
+  
+  .modal.show {
+    display: block;
+    opacity: 1;
+  }
+  
+  .modal-dialog {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    width: 80%;
+    max-width: 500px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .toast {
+      background-color: #464241;
+  }
+  .toast-header {
+      background-color: #464241;
+      color: white;
+  }
+  .toast {
+      background-color: #464241;
+  }
+  .toast-header {
+      background-color: #464241;
+      color: white;
+  }
+</style>
+<script>
+  // Check if the user has visited the website before
+  const visitedBefore = localStorage.getItem('visitedBefore');
+
+  // If not visited before, show the welcome dialog
+  if (!visitedBefore) {
+    const welcomeModal = document.getElementById('welcomeModal');
+    welcomeModal.classList.add('show');
+
+    // Set visitedBefore in localStorage to remember the visit
+    localStorage.setItem('visitedBefore', 'true');
+  }
+
+  // Close the modal when the close button is clicked
+  const closeButton = document.querySelector('#welcomeModal .close');
+  closeButton.addEventListener('click', () => {
+    const welcomeModal = document.getElementById('welcomeModal');
+    welcomeModal.classList.remove('show');
+  });
+  const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')
+
+if (toastTrigger) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+  toastTrigger.addEventListener('click', () => {
+    toastBootstrap.show()
+  })
+}
+</script>
 </body>
 </html>
