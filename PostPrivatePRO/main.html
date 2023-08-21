@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PostPrivate PRO</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="text-center py-4">
+    <img src="https://i.ibb.co/34GGWfK/logo.png" alt="Logo" class="logo" width="50">
+  </header>
+  <main class="container mt-4">
+    <div class="text-editor">
+  <script>
+    const correctPassword = "PostPrivately";
+    const hasEnteredPassword = localStorage.getItem("hasEnteredPassword");
+
+    if (!hasEnteredPassword) {
+      window.location.href = "index.html"; // Redirect to password entry page
+    }
+  </script>
+      <div class="toolbar btn-group mb-3" role="group">
+        <button class="btn btn-primary btn-sm rounded-pill me-2" id="boldButton"><strong>B</strong></button>
+        <button class="btn btn-primary btn-sm rounded-pill me-2" id="italicButton"><em>I</em></button>
+        <button class="btn btn-primary btn-sm rounded-pill me-2" id="underlineButton"><u>U</u></button>
+        <input type="color" id="colorPicker" class="form-control-color">
+      </div>
+      <div class="content form-control" contenteditable="true">
+        <p>Start typing your note here...</p>
+      </div>
+      <button class="btn btn-primary mt-3" id="placeNoteButton">Place Note</button>
+    </div>
+    <div class="notes-container mt-3" id="notesContainer"></div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
