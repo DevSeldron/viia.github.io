@@ -9,13 +9,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-body {
-  background-color: black;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  margin: 0;
-  padding: 0;
-}
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
     .logo {
       font-weight: 700;
       font-size: 24px;
@@ -58,6 +58,9 @@ body {
     .list-btn-group {
       display: none;
     }
+    .info {
+      text-align: center;
+    }
   </style>
   <title>PostPrivate</title>
 </head>
@@ -65,13 +68,13 @@ body {
   <div class="container">
     <div class="d-flex justify-content-between align-items-center">
       <div>
-<div class="logo">
-  <a href="https://viiah.com/PostPrivate">
-    <img src="https://i.ibb.co/pLLRDP8/B71-A7-E5-E-01-BC-456-C-8876-76-C61-F4-F5-EEC.jpg" alt="PostPrivate Logo" style="width: 50px;">
-  </a>
-</div>
+        <div class="logo">
+          <a href="https://viiah.com/PostPrivate">
+            <img src="https://i.ibb.co/pLLRDP8/B71-A7-E5-E-01-BC-456-C-8876-76-C61-F4-F5-EEC.jpg" alt="PostPrivate Logo" style="width: 50px;">
+          </a>
+        </div>
+        <h6 class="info">Taking Notes, but private, temporary, and in your browser's cache.</h6>
       </div>
-
       <div class="btn-group">
         <button type="button" class="btn btn-primary" onclick="addNote()">Add Note</button>
       </div>
@@ -103,7 +106,7 @@ body {
     window.onload = function () {
       var savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
       for (var i = savedNotes.length - 1; i >= 0; i--) {
-        displayNote(savedNotes[i]);
+        displayNoteWithDeleteButton(savedNotes[i], i);
       }
     }
 
@@ -122,22 +125,31 @@ body {
       savedNotes.push(note);
       localStorage.setItem('notes', JSON.stringify(savedNotes));
 
-      displayNote(note, true); // Prepend the note
-
+      displayNoteWithDeleteButton(note, savedNotes.length - 1); // Append the note with delete button
       document.getElementById('noteTitle').value = '';
       document.getElementById('noteContent').innerHTML = '';
-      adjustTextareaHeight(); // Adjust the height after clearing content
+      adjustTextareaHeight();
     }
 
-    function displayNote(note, prepend = false) {
+    function displayNoteWithDeleteButton(note, index) {
       var content = note.content.replace(/\n/g, '<br>'); // Replace line breaks with <br> tags
       content = content.replace(/<li>/g, '&#9679; ').replace(/<\/li>/g, '<br>'); // Replace <li> with bullet and <br> for list display
-      var noteHTML = '<div class="card mb-3"><div class="card-body"><h5 class="card-title">' + note.title + '</h5><div class="card-text">' + content + '</div><p class="card-date">' + note.date + '</p></div></div>';
-      
-      if (prepend) {
-        document.getElementById('notesList').insertAdjacentHTML('afterbegin', noteHTML);
-      } else {
-        document.getElementById('notesList').insertAdjacentHTML('beforeend', noteHTML);
+      var noteHTML = '<div class="card mb-3"><div class="card-body"><h5 class="card-title">' + note.title + '</h5><div class="card-text">' + content + '</div><p class="card-date">' + note.date + '</p><button type="button" class="btn btn-danger btn-sm" onclick="deleteNote(' + index + ')">Delete</button></div></div>';
+      document.getElementById('notesList').insertAdjacentHTML('beforeend', noteHTML);
+    }
+
+    function deleteNote(index) {
+      var savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
+      savedNotes.splice(index, 1);
+      localStorage.setItem('notes', JSON.stringify(savedNotes));
+      updateNotesList(savedNotes);
+    }
+
+    function updateNotesList(notes) {
+      var notesList = document.getElementById('notesList');
+      notesList.innerHTML = ''; // Clear the existing notes
+      for (var i = notes.length - 1; i >= 0; i--) {
+        displayNoteWithDeleteButton(notes[i], i);
       }
     }
 
@@ -149,5 +161,5 @@ body {
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+</body>   
 </html>
