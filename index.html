@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Viiah's Tools</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -53,6 +54,15 @@
  This website is finally being worked on, and has been rebranded.
 </div>
 <span class="line">
+            <div class="audio-container">
+        <audio id="myAudio" class="audio" autoplay controls>
+            <source src="https://sndup.net/ynfr/d" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+<h4 class="playorno"> Play background music</h4>
+        <button id="playButton" class="btn btn-primary">Play</button>
+        <button id="pauseButton" class="btn btn-primary">Pause</button>
+    </div>
     <h1 class="headerone">Welcome to Viiah's Tools!</h1>
           <p class="paragraphone">
      Hello and welcome to Viiah's Tools! This website will get updated with multiple new tools, usually always styled using Bootstrap. You can find out more about me below.</p>
@@ -75,12 +85,30 @@
        <style>
            .btn-primary {
                margin-top: 5px;
-           }
-           .music {
-    margin-left: 300px;
-    margin-right: 300px;
-    margin-top: 5px;
-           }
+           }        
+           /* Center the play and pause buttons */
+        .audio-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Hide the default audio controls */
+        .audio {
+            display: none;
+        }
+
+        /* Style the custom buttons */
+        #playButton, #pauseButton {
+            margin: 0 10px; /* Adjust the spacing between buttons */
+        }
+
+        /* Style the custom buttons */
+        #playButton, #pauseButton {
+            padding: 8px 20px;
+            margin: 0 10px; /* Adjust the spacing between buttons */
+            font-size: 16px;
+        }
            .songinf {
     margin-left: auto;
     margin-right: auto;
@@ -91,12 +119,12 @@
     margin-right: auto;
     width: 8em
            }
+.playorno {
+    text-align: center;
+    margin-left: 10px;
+}
        </style>
   </body>
-      <audio id="myAudio" class="music" volume="0.1" autoplay>
-        <source src="https://sndup.net/ynfr/d" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
 </html>
 <!-- partial -->
   <script  src="./script.js"></script>
@@ -106,6 +134,17 @@
 
     // Set the desired volume (0.0 to 1.0)
     audio.volume = 0.3; // Set to 50% volume
+            var audio = document.querySelector('.audio');
+        var playButton = document.getElementById('playButton');
+        var pauseButton = document.getElementById('pauseButton');
+
+        playButton.addEventListener('click', function() {
+            audio.play();
+        });
+
+        pauseButton.addEventListener('click', function() {
+            audio.pause();
+        });
     </script>
 </body>
 </html>
