@@ -13,8 +13,7 @@
         header {
             background-color: #3498db;
             color: #ffffff;
-            padding: 10px; /* Reduced padding for 3DS compatibility */
-            font-size: 18px; /* Adjust font size for better visibility on 3DS */
+            padding: 20px;
         }
         button {
             background-color: #3498db;
@@ -24,9 +23,6 @@
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
         }
-        img {
-            max-width: 100%; /* Ensure the image fits on smaller screens */
-        }
     </style>
 </head>
 <body>
@@ -34,9 +30,6 @@
         <h1>Another cool example</h1>
     </header>
     <button id="colorChangeButton" onclick="changeColor()">Click me to change color</button>
-    <br>
-    <!-- Add the image -->
-    <a href="https://ibb.co/X7yr9YC"><img src="https://i.ibb.co/v3s6bXj/IMG-4240.jpg" alt="IMG-4240" border="0" /></a>
 
     <script>
         var colors = ['#3498db', '#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6'];
