@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Button on 3DS</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #3498db;
+            color: #ffffff;
+            padding: 20px;
+        }
+        button {
+            background-color: #3498db;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Moving interactive button, on a 3DS?</h1>
+    </header>
+    <button id="moveButton" onclick="moveButton()">Click me to move!</button>
+
+    <script>
+        function moveButton() {
+            var button = document.getElementById("moveButton");
+            var newPositionX = Math.random() * (window.innerWidth - button.clientWidth);
+            var newPositionY = Math.random() * (window.innerHeight - button.clientHeight);
+            
+            button.style.left = newPositionX + "px";
+            button.style.top = newPositionY + "px";
+        }
+    </script>
+</body>
+</html>
