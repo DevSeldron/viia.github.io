@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moving Button on 3DS</title>
+    <title>3DS Color Change Button</title>
     <style>
         body {
             background-color: #ffffff;
@@ -21,24 +21,24 @@
             border: none;
             padding: 10px 20px;
             cursor: pointer;
-            position: relative;
+            transition: background-color 0.3s ease-in-out;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Moving interactive button, on a 3DS?</h1>
+        <h1>Another cool example</h1>
     </header>
-    <button id="moveButton" onclick="moveButton()">Click me to move!</button>
+    <button id="colorChangeButton" onclick="changeColor()">Click me to change color</button>
 
     <script>
-        function moveButton() {
-            var button = document.getElementById("moveButton");
-            var newPositionX = Math.random() * (window.innerWidth - button.clientWidth);
-            var newPositionY = Math.random() * (window.innerHeight - button.clientHeight);
-            
-            button.style.left = newPositionX + "px";
-            button.style.top = newPositionY + "px";
+        var colors = ['#3498db', '#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6'];
+        var currentIndex = 0;
+
+        function changeColor() {
+            var button = document.getElementById("colorChangeButton");
+            currentIndex = (currentIndex + 1) % colors.length;
+            button.style.backgroundColor = colors[currentIndex];
         }
     </script>
 </body>
