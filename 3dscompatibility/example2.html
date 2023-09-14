@@ -26,6 +26,8 @@
 <body>
     <h1>Another cool example</h1>
     <button id="colorChangeButton" onclick="changeColor()">Click me to change color</button>
+    <br>
+    <button onclick="showSystemAlert()">Show System Alert</button>
 
     <script>
         var colors = ['#3498db', '#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6'];
@@ -35,6 +37,10 @@
             var button = document.getElementById("colorChangeButton");
             currentIndex = (currentIndex + 1) % colors.length;
             button.style.backgroundColor = colors[currentIndex];
+        }
+
+        function showSystemAlert() {
+            alert("Hopefully this alert shows up on the 3DS");
         }
     </script>
 </body>
