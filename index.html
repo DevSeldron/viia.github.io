@@ -1,97 +1,120 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Viiah's Tools</title>
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5804007347062806"
-     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viiah's Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://fonts.cdnfonts.com/css/google-sans" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js?client=ca-pub-5804007347062806" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to bottom right, #756fdd, #1994ad);
+            color: #fff;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        .navbar {
+            background-color: #1994ad;
+        }
+
+        .navbar a {
+            color: #fff !important;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .headerone {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .paragraphone {
+            font-size: 1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary {
+            background: #1994ad;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #756fdd;
+        }
+    </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Viiah's Tools</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-<link href="https://fonts.cdnfonts.com/css/google-sans" rel="stylesheet">
-  </head>
-  <body class="p-3 mb-2 bg-dark text-white">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary p-3 mb-2 bg-body-secondary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Viiah's Tools</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="aboutme.html">About Me</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="PostPrivatePRO/Home.html">PostPrivate PRO</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link" href="MaterialNotes.html">MaterialNotes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="AIUI.html">AIUI</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="vinter.html">Vinter</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="classic/home.html">Old Landing Page</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link" href="windowsisos.html">Windows Files</a>
-        </li>
-      </ul>
+    <nav class="navbar navbar-expand-lg p-3 mb-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Viiah's Tools</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutme.html">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="PostPrivatePRO/Home.html">PostPrivate PRO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MaterialNotes.html">MaterialNotes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="AIUI.html">AIUI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="vinter.html">Vinter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="classic/home.html">Old Landing Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="windowsisos.html">Windows Files</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="headerone">Welcome to Viiah's Tools!</h1>
+        <p class="paragraphone">
+            Hello and welcome to Viiah's Tools! This website will get updated with multiple new tools, usually always styled using Bootstrap. You can find out more about me below.
+        </p>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">My Tools</h5>
+                <p class="card-text">My current tools are displayed below, click on one of the buttons to access them.</p>
+                <a class="btn btn-primary" href="AIUI.html" role="button">AIUI</a>
+                <a class="btn btn-primary" href="MaterialNotes.html" role="button">MaterialNotes</a>
+                <a class="btn btn-primary 3rdBTN" href="PostPrivatePRO/Home.html" role="button">PostPrivate PRO</a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">About Me</h5>
+                <p class="card-text">My name is Viiah, you can also call me Sudo. I like VR and Flatscreen games, same with web development.</p>
+                <a class="btn btn-primary 3rdBTN" href="aboutme.html" role="button">About Me</a>
+            </div>
+        </div>
     </div>
-  </div>
-</nav>
-<span class="line">
-    <h1 class="headerone">Welcome to Viiah's Tools!</h1>
-          <p class="paragraphone">
-     Hello and welcome to Viiah's Tools! This website will get updated with multiple new tools, usually always styled using Bootstrap. You can find out more about me below.</p>
-</span>
-    <div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">My Tools</h5>
-    <p class="card-text">My current tools are displayed below, click on one of the buttons to access them.</p>
-     <a class="btn btn-primary" href="AIUI.html" role="button">AIUI</a>
-     <a class="btn btn-primary" href="MaterialNotes.html" role="button">MaterialNotes</a>
-     <a class="btn btn-primary" class="3rdBTN" href="PostPrivatePRO/Home.html" role="button">PostPrivate PRO</a>
-  </div>
-       <div class="card-body">
-    <h5 class="card-title">About Me</h5>
-    <p class="card-text">My name is Viiah, you can also call me Sudo. I like VR and Flatscreen games, same with web development.</p>
-              <a class="btn btn-primary" class="3rdBTN" href="aboutme.html" role="button">About Me</a>
-  </div>
-</div>
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-       <style>
-           .btn-primary {
-               margin-top: 5px;
-           }        
-           .card {
-    margin-left: auto;
-    margin-right: auto;
-    width: 8em
-           }
-.playorno {
-    text-align: center;
-    margin-left: 10px;
-}
-       </style>
-  </body>
-</html>
-<!-- partial -->
-  <script  src="./script.js"></script>
 </body>
 </html>
