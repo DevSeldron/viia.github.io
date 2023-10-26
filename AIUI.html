@@ -1,274 +1,291 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AI UI</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-<div id="welcomeModal" class="modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Welcome to AIUI!</h5>
-        <button type="button" class="close" id="liveToastBtn" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        AIUI is a very simple User Interface for GPT. I hope you enjoy!
-      </div>
-    </div>
-  </div>
-</div>
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-header">
-      <strong class="me-auto">Alert</strong>
-      <small>Just Now</small>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-    <div class="toast-body">
-      You will need a functional OpenAI API Key to use this.
-    </div>
-  </div>
-</div>
-  <style>
-  body {
-    background-color: #262728;
-    color: white;
-  }
-    .message {
-      margin-bottom: 10px;
-    }
-    .role {
-      font-weight: bold;
-    }
-    .user {
-      color: blue;
-    }
-    .assistant {
-      color: green;
-    }
-    #chatMenu {
-      max-height: 400px;
-      overflow-y: auto;
-    }
-    .privacy {
-        text-alignment: center;
-        margin-left: 30px;
-        margin-top: 20px;
-        font-size: 15px;
-    }
-    #chatMenu {
-      border-radius: 10px;
-      margin-top: 40px;
-    }
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
-    color: black;
-  }
-  
-  .modal.show {
-    display: block;
-    opacity: 1;
-  }
-  
-  .modal-dialog {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0 auto;
-    width: 80%;
-    max-width: 500px;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 20px;
-  }
-  
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .toast {
-      background-color: #464241;
-  }
-  .toast-header {
-      background-color: #464241;
-      color: white;
-  }
-  </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: #fff;
+        }
+
+        h1 {
+            color: #007BFF;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="password"], input[type="text"], button {
+            width: 80%;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        input[type="password"], input[type="text"] {
+            padding: 10px;
+        }
+
+        button {
+            background-color: #007BFF;
+            cursor: pointer;
+        }
+
+        .conversation-box {
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            border-radius: 10px;
+            height: 200px;
+            overflow-y: auto;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .user-message {
+            background-color: #007BFF;
+        }
+
+        .assistant-message {
+            background-color: #444;
+        }
+
+        .reset-button {
+            background-color: #FF0000;
+        }
+
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 20px;
+            margin: 10px;
+        }
+
+        .card {
+            text-align: center;
+            border: 1px solid #007BFF;
+            border-radius: 10px;
+            padding: 10px;
+            width: 300px;
+            margin: 10px;
+        }
+
+        .centered {
+            text-align: center;
+        }
+
+        .toast {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: 999;
+        }
+
+        .settings-menu {
+            display: none;
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            background-color: #333;
+            border: 1px solid #007BFF;
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .show-settings-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <div class="container mt-4">
-    <h1>AIUI</h1>
-
-    <!-- API Key Form -->
-    <form id="apiKeyForm" onsubmit="setApiKey(event)">
-      <div class="form-group">
-        <label for="apiKeyInput">API Key:</label>
-        <input type="text" class="form-control" id="apiKeyInput" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Set API Key</button>
-    </form>
-
-    <div class="row mt-4">
-      <div class="col-md-6">
-        <!-- Chat Form -->
-        <form id="gptForm" onsubmit="generateResponse(event)">
-          <div class="form-group">
-            <label for="inputText">Enter your message:</label>
-            <input type="text" class="form-control" id="inputText" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Send</button>
-        </form>
-      </div>
-      <div class="col-md-6">
-        <!-- Conversation Display -->
-        <div id="chatMenu" class="border p-3">
-          <h5>Chat Menu</h5>
-          <hr>
-          <ul id="chatMenuList" class="list-unstyled"></ul>
+    <h1>AI Website</h1>
+    <button class="show-settings-button" id="showSettings">Settings</button>
+    <div class="settings-menu" id="settingsMenu">
+        <input type="password" id="apiKeyInput" placeholder="Enter your OpenAI API Key">
+        <button id="setApiKey">Set API Key</button>
+    </div>
+    <div class="container">
+        <div class="card centered">
+            <p class="centered">AI Instructions</p>
+            <button id="listTab">Create List</button><br>
+            <button id="songTab">Create Playlist</button>
+            <button id="converseTab">Converse</button>
         </div>
-      </div>
     </div>
-
-    <!-- Generated Response Display -->
-    <div class="mt-4">
-      <h3>Generated Response:</h3>
-      <div id="responseSection"></div>
+    <div class="container">
+        <div class="conversation-box" id="conversation"></div>
     </div>
-  </div>
-
-  <script>
-    let apiKey = '';
-    let conversation = [];
-
-    function setApiKey(event) {
-      event.preventDefault();
-
-      const apiKeyInput = document.getElementById('apiKeyInput').value;
-      apiKey = apiKeyInput;
-      document.getElementById('apiKeyInput').value = ''; // Clear the input field
-    }
-
-    function generateResponse(event) {
-      event.preventDefault();
-
-      const inputText = document.getElementById('inputText').value;
-
-      const endpointUrl = 'https://api.openai.com/v1/chat/completions';
-
-      conversation.push({ role: 'user', content: inputText });
-
-      fetch(endpointUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          model: 'gpt-3.5-turbo',
-          messages: conversation
-        })
-      })
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(data) {
-          const generatedMessage = data.choices[0].message.content;
-
-          conversation.push({ role: 'assistant', content: generatedMessage });
-
-          const responseSection = document.getElementById('responseSection');
-          responseSection.innerHTML = generatedMessage;
-
-          updateChatMenu(conversation);
-        })
-        .catch(function(error) {
-          console.error(error);
-        });
-
-      document.getElementById('inputText').value = ''; // Clear the input field
-    }
-
-    function updateChatMenu(conversation) {
-      const chatMenuList = document.getElementById('chatMenuList');
-      chatMenuList.innerHTML = '';
-
-      conversation.forEach(function(message, index) {
-        const listItem = document.createElement('li');
-        listItem.classList.add('mb-2');
-
-        const roleElement = document.createElement('div');
-        roleElement.classList.add('role');
-        roleElement.textContent = message.role.charAt(0).toUpperCase() + message.role.slice(1);
-
-        const contentElement = document.createElement('div');
-        contentElement.classList.add('content');
-        contentElement.textContent = message.content;
-
-        listItem.appendChild(roleElement);
-        listItem.appendChild(contentElement);
-
-        if (message.role === 'assistant') {
-          listItem.classList.add('text-success');
-        } else {
-          listItem.classList.add('text-primary');
-        }
-
-        if (index === conversation.length - 1) {
-          listItem.classList.add('font-weight-bold');
-        }
-
-        chatMenuList.appendChild(listItem);
-      });
-
-      // Scroll to the bottom of the chat menu
-      const chatMenu = document.getElementById('chatMenu');
-      chatMenu.scrollTop = chatMenu.scrollHeight;
-    }
-  </script>
-<script>
-  // Check if the user has visited the website before
-  const visitedBefore = localStorage.getItem('visitedBefore');
-
-  // If not visited before, show the welcome dialog
-  if (!visitedBefore) {
-    const welcomeModal = document.getElementById('welcomeModal');
-    welcomeModal.classList.add('show');
-
-    // Set visitedBefore in localStorage to remember the visit
-    localStorage.setItem('visitedBefore', 'true');
-  }
-
-  // Close the modal when the close button is clicked
-  const closeButton = document.querySelector('#welcomeModal .close');
-  closeButton.addEventListener('click', () => {
-    const welcomeModal = document.getElementById('welcomeModal');
-    welcomeModal.classList.remove('show');
-  });
-  const toastTrigger = document.getElementById('liveToastBtn')
-const toastLiveExample = document.getElementById('liveToast')
-
-if (toastTrigger) {
-  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-  toastTrigger.addEventListener('click', () => {
-    toastBootstrap.show()
-  })
-}
-</script>
-  <h4 class="privacy"> NOTICE: I, the website creator, can not access or see your API Key. I value your privacy as much as I can, and that's the reason I made a local browser-based note-taking app, so I can't see your private notes. </h4>
+    <div class="container">
+        <input type="text" id="userInput" placeholder="Type your message" autocomplete="off">
+        <button id="sendMessage">Send</button>
+        <button class="reset-button" id="resetChat">Reset Chat</button>
+    </div>
+    <div class="toast" id="toast">Successfully set API Key.</div>
 </body>
+<script>
+    let apiKey = null;
+    let currentTab = "conversation";
+    let customInstructions = "";
+
+    const conversationBox = document.getElementById("conversation");
+    const userInputField = document.getElementById("userInput");
+    const toast = document.getElementById("toast");
+    const settingsMenu = document.getElementById("settingsMenu");
+    const showSettingsButton = document.getElementById("showSettings");
+
+    showSettingsButton.addEventListener("click", function () {
+        settingsMenu.style.display = settingsMenu.style.display === "block" ? "none" : "block";
+    });
+
+    document.getElementById("setApiKey").addEventListener("click", function () {
+        apiKey = document.getElementById("apiKeyInput").value;
+        showToast("Successfully set API Key.");
+        settingsMenu.style.display = "none";
+    });
+
+    document.getElementById("listTab").addEventListener("click", function () {
+        currentTab = "list";
+        customInstructions = "Create a list:\n";
+        showToast("Successfully set mode.");
+    });
+
+    document.getElementById("songTab").addEventListener("click", function () {
+        currentTab = "song";
+        customInstructions = "Create a playlist:\n";
+        showToast("Successfully set mode.");
+    });
+
+    document.getElementById("converseTab").addEventListener("click", function () {
+        currentTab = "conversation";
+        customInstructions = "You are a helpful assistant.\n";
+        showToast("Successfully set mode.");
+    });
+
+    document.getElementById("sendMessage").addEventListener("click", function () {
+        sendMessage();
+    });
+
+    userInputField.addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    });
+
+    document.getElementById("resetChat").addEventListener("click", function () {
+        conversationBox.innerHTML = ""; // Clear the chatbox
+    });
+
+    function sendMessage() {
+        const userMessage = userInputField.value;
+
+        if (userMessage.trim() !== "") {
+            const conversationHistory = [];
+
+            // Display user message in the chat as a person
+            displayMessage("user", userMessage);
+
+            if (currentTab === "list" || currentTab === "song") {
+                conversationHistory.push({ role: "user", content: customInstructions + userMessage });
+            } else {
+                conversationHistory.push({ role: "user", content: userMessage });
+            }
+
+            userInputField.value = ""; // Clear the input field
+
+            fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: JSON.stringify({
+                    model: 'gpt-3.5-turbo',
+                    messages: conversationHistory
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                let assistantResponse = data.choices[0].message.content;
+
+                if (currentTab === "list" || currentTab === "song") {
+                    // Convert response to a list format
+                    assistantResponse = formatAsList(assistantResponse);
+                }
+
+                // Display AI message in the chat as the assistant
+                displayMessage("assistant", assistantResponse);
+                scrollToBottom();
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+    }
+
+    function formatAsList(content) {
+        // Split response into separate lines and format as a list
+        const lines = content.split('\n');
+        const listItems = lines.map(item => `<li>${item}</li>`);
+        return `<ul>${listItems.join('')}</ul>`;
+    }
+
+    function displayMessage(role, content) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message");
+
+        if (role === "user") {
+            messageDiv.classList.add("user-message");
+        } else {
+            messageDiv.classList.add("assistant-message");
+        }
+
+        messageDiv.innerHTML = content; // Use innerHTML to render HTML tags
+        conversationBox.appendChild(messageDiv);
+    }
+
+    function scrollToBottom() {
+        conversationBox.scrollTop = conversationBox.scrollHeight;
+    }
+
+    function showToast(message) {
+        toast.innerText = message;
+        toast.style.opacity = 1;
+
+        setTimeout(() => {
+            toast.style.opacity = 0;
+        }, 5000);
+    }
+</script>
 </html>
