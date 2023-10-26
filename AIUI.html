@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AIUI2</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -130,7 +131,7 @@
     </style>
 </head>
 <body>
-    <h1>AI Website</h1>
+    <h1>AIUI2</h1>
     <button class="show-settings-button" id="showSettings">Settings</button>
     <div class="settings-menu" id="settingsMenu">
         <input type="password" id="apiKeyInput" placeholder="Enter your OpenAI API Key">
@@ -213,7 +214,6 @@
         if (userMessage.trim() !== "") {
             const conversationHistory = [];
 
-            // Display user message in the chat as a person
             displayMessage("user", userMessage);
 
             if (currentTab === "list" || currentTab === "song") {
@@ -222,7 +222,7 @@
                 conversationHistory.push({ role: "user", content: userMessage });
             }
 
-            userInputField.value = ""; // Clear the input field
+            userInputField.value = ""; 
 
             fetch('https://api.openai.com/v1/chat/completions', {
                 method: 'POST',
@@ -244,7 +244,6 @@
                     assistantResponse = formatAsList(assistantResponse);
                 }
 
-                // Display AI message in the chat as the assistant
                 displayMessage("assistant", assistantResponse);
                 scrollToBottom();
             })
